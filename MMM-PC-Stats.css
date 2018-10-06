@@ -4,46 +4,95 @@
  * Pick your color, copy and paste the HEX number. Example - #62FF00 = bright green.
  */
 
+.MMM-PC-Stats {
+  width: 1000px;
+  text-align: center;
+  margin-left: 50px;
+}
+
 .MMM-PC-Stats .header {
-  color: #FFFFFF;               /* Header color. Default is white. */
+  text-align: center;
+  text-transform: none;
+  font-size: 40px;
+  font-family: "Macondo Swash Caps", cursive;
+  font-weight: bolder;
+  border: 2px solid yellow;
+  border-radius: 25px;
+  line-height: 55px;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  color: yellow;               /* Header color. Default is white. */
 }
 
 .MMM-PC-Stats .ram {
-  color: yellow;               /* ram color. Default is white. */
+  color: darkcyan;
+  font-size: 40px;
+  line-height: 50px;
 }
 
 .MMM-PC-Stats .yourCPU {
-  color: #62FF00;               /* yourCPU color. Default is white. */
+  color: #fff;
+  font-size: 40px;
+  line-height: 50px;
+  text-align: center;
 }
 
 .MMM-PC-Stats .usage {
-  color: cyan;               /* usage color. Default is white. */
+  color: #f00;
+  font-size: 40px;
+  line-height: 50px;
 }
 
 .MMM-PC-Stats .graphicsTemp {
-  color: yellow;               /* usage color. Default is white. */
+  color: forestgreen;
+  font-size: 40px;
+  line-height: 50px;
 }
 
 .MMM-PC-Stats .core0Temp {
-	color: cyan;
-	text-align: right;
-	margin-top: -150px;
+  color: burlywood;
+  font-size: 40px;
+  line-height: 50px;
 }
 
 .MMM-PC-Stats .core1Temp {
-	color: cyan;
-	text-align: right;
-	margin-top: 0px;
+  color: maroon;
+  font-size: 40px;
+  line-height: 50px;
 }
 
 .MMM-PC-Stats .core2Temp {
-	color: cyan;
-	text-align: right;
-	margin-top: 0px;
+  color: burlywood;
+  font-size: 40px;
+  line-height: 50px;
 }
 
 .MMM-PC-Stats .core3Temp {
-	color: cyan;
-	text-align: right;
-	margin-top: 0px;
+  color: maroon;
+  font-size: 40px;
+  line-height: 50px;
+}
+
+.MMM-PC-Stats .core4Temp {
+  color: burlywood;
+  font-size: 40px;
+  line-height: 50px;
+}
+
+.MMM-PC-Stats .core5Temp {
+  color: maroon;
+  font-size: 40px;
+  line-height: 50px;
+}
+
+.MMM-PC-Stats .core6Temp {
+  color: burlywood;
+  font-size: 40px;
+  line-height: 50px;
+}
+
+.MMM-PC-Stats .core7Temp {
+  color: maroon;
+  font-size: 40px;
+  line-height: 50px;
 }
