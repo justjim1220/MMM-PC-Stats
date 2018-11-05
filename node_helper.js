@@ -4,9 +4,9 @@
  * By Mykle1
  *
  */
-const NodeHelper = require('node_helper');
-const request = require('pc-stats');
-var lm_sensors = require('sensors.js');
+const NodeHelper = require("node_helper");
+const request = require("pc-stats");
+var lmSensors = require("sensors.js");
 
 module.exports = NodeHelper.create({
 
@@ -14,31 +14,41 @@ module.exports = NodeHelper.create({
         console.log("Starting node_helper for: " + this.name);
     },
 
-    getStats: function(url) { 
-		var stats = require('pc-stats')
-		stats().then((statistics) => { 
+    getStats: function() {
+		var stats = require("pc-stats")
+		stats().then((statistics) => {
     	 this.sendSocketNotification("STATS_RESULT", statistics);
 		})
-		this.getSensors();
+        this.getSensors();
+        this.getTemps();
     },
-	
-	getSensors: function(url) {
-         var self= this;
-		lm_sensors.sensors(function (data, error) {
-			if (error) throw error; 
+
+	getSensors: function() {
+		lmSensors.sensors(function (data, error) {
+            if (error) { throw error };
 			var result = data;
-			self.sendSocketNotification("SENSORS_RESULT", result);
-	//		console.log(result); // for checking
-			
-		});
+			this.sendSocketNotification("SENSORS_RESULT", result);
+			console.log(result); // for checking
+        });
+    },
+
+    getTemps: function() {
+        exec("cmd /c /ConsoleApp2.exe", (error, stdout, _stderr)=>{
+            if (error) {throw error};
+            this.sendSocketNotification("TEMPS_RESULT", stdout);
+            console.log(stdout); // for checking
+        });
     },
 
     socketNotificationReceived: function(notification, payload) {
-        if (notification === 'GET_STATS') {
+        if (notification === "GET_STATS") {
             this.getStats(payload);
         }
-		if (notification === 'GET_SENSORS') {
+		if (notification === "GET_SENSORS") {
             this.getSensors(payload);
+        }
+        if (notification === "GET_TEMPS") {
+            this.getTemps(payload);
         }
     }
 });
