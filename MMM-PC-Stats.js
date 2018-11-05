@@ -95,32 +95,33 @@ Module.register("MMM-PC-Stats", {
 
 		for (var i = 0, len = Stats.cpu.threads.length; i < len; i++) {
 
-			var Element = document.createElement("div");
+			var Element = document.createElement("span");
 			Element.classList.add("large", "bright", "usage");
 			Element.innerHTML = Stats.cpu.threads[i].name + " &nbsp  @  &nbsp " + Number(Math.round(Stats.cpu.threads[i].usage+"e2")+"e-2") + "%";
 			wrapper.appendChild(Element);
 
 
 			// Check if cpu device has temp sensor
-            if (os === "Windows") {
-                var core0TempCheck = Temps["Hardware"]["Sensors"];
+		        if (os === "Windows") {
+				var core0TempCheck = Temps["Hardware"]["Sensors"];
 				if (typeof core0TempCheck !== "undefined") {
 
 					// Windows Core Temps
-					var core0Temp = document.createElement("div");
+					var core0Temp = document.createElement("span");
 					core0Temp.classList.add("large", "bright", "core0Temp");
-                    core0Temp.innerHTML = Temps["Hardware"]["Sensors"]["CPU Core 0"].Name + " &nbsp  @  &nbsp " + Temps["Hardware"]["Sensors"]["CPU Core 0"].Value + "&deg;C";
+                    			core0Temp.innerHTML = Temps["Hardware"]["Sensors"]["CPU Core 0"].Name + " &nbsp  @  &nbsp " + Temps["Hardware"]["Sensors"]["CPU Core 0"].Value + "&deg;C";
 					wrapper.appendChild(core0Temp);
 				}
 			} else {
-				var core0TempCheck = Sensors["coretemp-isa-0000"];
-				if (typeof core0TempCheck !== "undefined") {
+				// Check if core0 has temp sensor
+					var core0TempCheck = Sensors["acpitz-virtual-0"]["Virtual device"];
+					if (typeof core0TempCheck !== 'undefined'){
 
-					// Core Temps
-					var core0Temp = document.createElement("div");
+					// core0Temp
+					var core0Temp = document.createElement("span");
 					core0Temp.classList.add("large", "bright", "core0Temp");
-					core0Temp.innerHTML = Stats.cpu.threads[i].name + " &nbsp  @  &nbsp " + Sensors["coretemp-isa-0000"]["ISA adapter"]["Core 0"].value + "&deg;C";
-					wrapper.appendChild(core0Temp);
+					core0Temp.innerHTML = "Temp: " + " &nbsp " + Sensors["acpitz-virtual-0"]["Virtual device"].temp1.value + "°C" + "<br>";
+					Element.appendChild(core0Temp);
 				}
 			}
 		}
