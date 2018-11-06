@@ -13,7 +13,7 @@ module.exports = NodeHelper.create({
     start: function() {
         console.log("Starting node_helper for: " + this.name);
     },
-
+ 
     getStats: function() {
 		var stats = require("pc-stats")
 		stats().then((statistics) => {
@@ -33,7 +33,7 @@ module.exports = NodeHelper.create({
     },
 
     getTemps: function() {
-        exec("cmd /c MS_CPUTemps.exe", (error, stdout, _stderr)=>{
+        exec("cmd /c /ConsoleApp2.exe", (error, stdout, _stderr)=>{
             if (error) {throw error};
             this.sendSocketNotification("TEMPS_RESULT", stdout);
             console.log(stdout); // for checking
