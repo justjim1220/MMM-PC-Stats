@@ -15,20 +15,20 @@ module.exports = NodeHelper.create({
     },
 
     getStats: function() {
-		var stats = require("pc-stats")
-		stats().then((statistics) => {
-    	 this.sendSocketNotification("STATS_RESULT", statistics);
-		})
+	var stats = require("pc-stats")
+	stats().then((statistics) => {
+    	    this.sendSocketNotification("STATS_RESULT", statistics);
+	})
         this.getSensors();
         this.getTemps();
     },
 
-	getSensors: function() {
-		lmSensors.sensors(function (data, error) {
+    getSensors: function() {
+	lmSensors.sensors(function (data, error) {
             if (error) { throw error };
-			var result = data;
-			this.sendSocketNotification("SENSORS_RESULT", result);
-			console.log(result); // for checking
+	    var result = data;
+	    this.sendSocketNotification("SENSORS_RESULT", result);
+	    console.log(result); // for checking
         });
     },
 
@@ -44,7 +44,7 @@ module.exports = NodeHelper.create({
         if (notification === "GET_STATS") {
             this.getStats(payload);
         }
-		if (notification === "GET_SENSORS") {
+	if (notification === "GET_SENSORS") {
             this.getSensors(payload);
         }
         if (notification === "GET_TEMPS") {
