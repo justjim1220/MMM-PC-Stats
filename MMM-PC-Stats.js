@@ -7,7 +7,7 @@
 Module.register("MMM-PC-Stats", {
 
 	defaults: {
-		GPU: "ATI Radeon HD 4200", // name of your video card
+        GPU: "NVIDIA GeForce GTX 960M", // name of your video card
 		useHeader: false,
 		header: "",
 		maxWidth: "1200px",
@@ -108,13 +108,13 @@ Module.register("MMM-PC-Stats", {
 					// Windows Core Temps
 					var core0Temp = document.createElement("span");
 					core0Temp.classList.add("large", "bright", "core0Temp");
-                    core0Temp.innerHTML = "Temp: " + " &nbsp " + this.Temps["CPU Core 1"].value + "°C" + "<br>";
+                    core0Temp.innerHTML = "Temp: " + " &nbsp " + Temps["CPU Core 1"].value + "°C" + "<br>";
 					Element.appendChild(core0Temp);
 				}
 			} else {
 				// Check if core0 has temp sensor
 					var core0TempCheck = Sensors["acpitz-virtual-0"]["Virtual device"];
-					if (typeof core0TempCheck !== 'undefined'){
+					if (typeof core0TempCheck !== "undefined"){
 
 					// core0Temp
 					var core0Temp = document.createElement("span");
@@ -163,7 +163,7 @@ Module.register("MMM-PC-Stats", {
 	processStats: function(data) {
 		this.Stats = data;
 		this.loaded = true;
-		console.log(this.Stats); // for checking in dev console
+		//console.log(this.Stats); // for checking in dev console
 	},
 
 	processSensors: function(data) {
@@ -171,8 +171,8 @@ Module.register("MMM-PC-Stats", {
 		console.log(this.Sensors); // for checking in dev console
 	},
 
-	processTemps: function(stdout) {
-		this.Temps = stdout;
+	processTemps: function(data) {
+		this.Temps = data;
 		console.log(this.Temps); // for checking in dev console
 	},
 
