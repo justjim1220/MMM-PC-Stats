@@ -33,11 +33,12 @@ module.exports = NodeHelper.create({
     },
 
     getTemps: function() {
-        exec("runas /user:administrator cmd /c ./MS_CPUTemps.exe", (error, stdout, _stderr)=>{
-            if (error) {throw error};
-            this.sendSocketNotification("TEMPS_RESULT", stdout);
-            console.log(stdout); // for checking
-        });
+       //exec("runas /user:administrator cmd /c ./MS_CPUTemps.exe", (error, stdout, _stderr)=>{
+       //     if (error) {throw error};
+       //     this.sendSocketNotification("TEMPS_RESULT", stdout);
+       //     console.log(stdout); // for checking
+       // });
+	this.sendSocketNotification("TEMPS_RESULT", "{\"CPU Core 1\":\"76\",\"CPU Core 2\":\"74\",\"CPU Core 3\":\"71\",\"CPU Core 4\":\"73\",\"CPU Core 5\":\"74\",\"CPU Core 6\":\"76\",\"CPU Package\":\"76\"}");    
     },
 
     socketNotificationReceived: function(notification, payload) {
