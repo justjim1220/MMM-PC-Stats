@@ -33,7 +33,7 @@ module.exports = NodeHelper.create({
     },
 
     getTemps: function() {
-        exec("cmd /c MS_CPUTemps.exe", (error, stdout, _stderr)=>{
+        exec("cmd /c /MS_CPUTemps.exe", (error, stdout, _stderr)=>{
             if (error) {throw error};
             this.sendSocketNotification("TEMPS_RESULT", stdout);
             console.log(stdout); // for checking
