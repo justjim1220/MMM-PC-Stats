@@ -58,21 +58,8 @@ Module.register("MMM-PC-Stats", {
 		var Stats = this.Stats;
         var Sensors = this.Sensors;
         var Temps = this.Temps;
-        var os = this.os;
+		var os = this.os;
 
-
-		// Your total RAM and Free RAM
-		var ram = document.createElement("div");
-		ram.classList.add("large", "bright", "ram");
-		ram.innerHTML = "Total RAM = " + Stats.ram.total + Stats.ram.unit + "<br>" + "Free RAM = " + Stats.ram.free + Stats.ram.unit;
-		wrapper.appendChild(ram);
-
-
-		// Your CPU and CPU speed
-		var yourCPU = document.createElement("div");
-		yourCPU.classList.add("large", "bright", "yourCPU");
-		yourCPU.innerHTML = Stats.cpu.name;
-		wrapper.appendChild(yourCPU);
 
 		// Your GPU
 		var yourGPU = document.createElement("div");
@@ -90,25 +77,38 @@ Module.register("MMM-PC-Stats", {
 			//console.log(Sensors['coretemp-isa-0000']['ISA adapter']['Core 0'].high);
 			graphicsTemp.innerHTML = this.config.gpu +  " temp @ " + Sensors["nouveau-pci-0090"]["PCI adapter"].temp1.value + "&deg;C";
 			wrapper.appendChild(graphicsTemp);
-
 		}
 
+
+		// Your total RAM and Free RAM
+		var ram = document.createElement("div");
+		ram.classList.add("large", "bright", "ram");
+		ram.innerHTML = "Total RAM = " + Stats.ram.total + Stats.ram.unit + "&nbsp || &nbsp" + "Free RAM = " + Stats.ram.free + Stats.ram.unit;
+		wrapper.appendChild(ram);
+
+
+		// Your CPU and CPU speed
+		var yourCPU = document.createElement("div");
+		yourCPU.classList.add("large", "bright", "yourCPU");
+		yourCPU.innerHTML = Stats.cpu.name;
+		wrapper.appendChild(yourCPU);
+		
+		// Your CPU usage and temp
 		for (var i = 0, len = Stats.cpu.threads.length; i < len; i++) {
 
 			var Element = document.createElement("span");
 			Element.classList.add("large", "bright", "usage");
-			Element.innerHTML = Stats.cpu.threads[i].name + " &nbsp  @  &nbsp " + Number(Math.round(Stats.cpu.threads[i].usage+"e2")+"e-2") + "%";
-
+			Element.innerHTML = Stats.cpu.threads[i].name + " &nbsp  @  &nbsp " + Number(Math.round(Stats.cpu.threads[i].usage+"e2")+"e-2") + "%" + "<br>";
 
 			// Check if cpu device has temp sensor
-		        if (os === "Windows") {
-				var core0TempCheck = this.Temps;
+		        if (os = "Windows") {
+				var core0TempCheck = this.Temps["CPU Core 1"];
 				if (typeof core0TempCheck !== "undefined") {
 
 					// Windows Core Temps
 					var core0Temp = document.createElement("span");
 					core0Temp.classList.add("large", "bright", "core0Temp");
-                    core0Temp.innerHTML = "Temp: " + " &nbsp " + this.Temps[corename].Value + "°C" + "<br>";
+                    core0Temp.innerHTML = "Temp: " + " &nbsp " + this.Temps["CPU Core 1"].value + "°C" + "<br>";
 					Element.appendChild(core0Temp);
 				}
 			} else {
@@ -171,8 +171,8 @@ Module.register("MMM-PC-Stats", {
 		console.log(this.Sensors); // for checking in dev console
 	},
 
-	processTemps: function(data) {
-		This.Temps = data;
+	processTemps: function(stdout) {
+		this.Temps = stdout;
 		console.log(this.Temps); // for checking in dev console
 	},
 
@@ -197,7 +197,7 @@ Module.register("MMM-PC-Stats", {
 			this.processSensors(payload);
 			this.updateDom(this.config.fadeSpeed);
 		}
-		if (notification === "TEMPS_RESULTS") {
+		if (notification === "TEMPS_RESULT") {
 			this.processTemps(payload);
 			this.updateDom(this.config.fadeSpeed);
 		}
