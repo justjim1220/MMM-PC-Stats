@@ -98,19 +98,18 @@ Module.register("MMM-PC-Stats", {
 			var Element = document.createElement("span");
 			Element.classList.add("large", "bright", "usage");
 			Element.innerHTML = Stats.cpu.threads[i].name + " &nbsp  @  &nbsp " + Number(Math.round(Stats.cpu.threads[i].usage+"e2")+"e-2") + "%";
-			wrapper.appendChild(Element);
 
 
 			// Check if cpu device has temp sensor
 		        if (os === "Windows") {
-				var core0TempCheck = Temps["Hardware"]["Sensors"];
+				var core0TempCheck = this.Temps;
 				if (typeof core0TempCheck !== "undefined") {
 
 					// Windows Core Temps
 					var core0Temp = document.createElement("span");
 					core0Temp.classList.add("large", "bright", "core0Temp");
-                    			core0Temp.innerHTML = Temps["Hardware"]["Sensors"]["CPU Core 0"].Name + " &nbsp  @  &nbsp " + Temps["Hardware"]["Sensors"]["CPU Core 0"].Value + "&deg;C";
-					wrapper.appendChild(core0Temp);
+                    core0Temp.innerHTML = "Temp: " + " &nbsp " + this.Temps[corename].Value + "°C" + "<br>";
+					Element.appendChild(core0Temp);
 				}
 			} else {
 				// Check if core0 has temp sensor
@@ -124,6 +123,7 @@ Module.register("MMM-PC-Stats", {
 					Element.appendChild(core0Temp);
 				}
 			}
+			wrapper.appendChild(Element);
 		}
 
 		return wrapper;
