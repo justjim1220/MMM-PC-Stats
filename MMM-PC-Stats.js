@@ -31,7 +31,7 @@ Module.register("MMM-PC-Stats", {
 		Log.info("Starting module: " + this.name);
 		this.Stats = {};
         this.Sensors = {};
-        this.Temps = {};
+        this.Temps = null;
 		this.scheduleUpdate();
 	},
 
