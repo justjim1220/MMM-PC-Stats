@@ -7,7 +7,7 @@
 Module.register("MMM-PC-Stats", {
 
 	defaults: {
-        GPU: "NVIDIA GeForce GTX 960M", // name of your video card
+		GPU: "NVIDIA GeForce GTX 960M", // name of your video card
 		useHeader: false,
 		header: "",
 		maxWidth: "1200px",
@@ -30,8 +30,8 @@ Module.register("MMM-PC-Stats", {
 	start: function() {
 		Log.info("Starting module: " + this.name);
 		this.Stats = {};
-        this.Sensors = {};
-        this.Temps = null;
+		this.Sensors = {};
+		this.Temps = null;
 		this.scheduleUpdate();
 	},
 
@@ -56,8 +56,8 @@ Module.register("MMM-PC-Stats", {
 		}
 
 		var Stats = this.Stats;
-        var Sensors = this.Sensors;
-        var Temps = this.Temps;
+		var Sensors = this.Sensors;
+		var Temps = this.Temps;
 		var os = this.os;
 
 
@@ -92,7 +92,7 @@ Module.register("MMM-PC-Stats", {
 		yourCPU.classList.add("large", "bright", "yourCPU");
 		yourCPU.innerHTML = Stats.cpu.name;
 		wrapper.appendChild(yourCPU);
-		
+
 		// Your CPU usage and temp
 		for (var i = 0, len = Stats.cpu.threads.length; i < len; i++) {
 
@@ -101,7 +101,7 @@ Module.register("MMM-PC-Stats", {
 			Element.innerHTML = Stats.cpu.threads[i].name + " &nbsp  @  &nbsp " + Number(Math.round(Stats.cpu.threads[i].usage+"e2")+"e-2") + "%" + "<br>";
 
 			// Check if cpu device has temp sensor
-		        if (os = "Windows") {				
+			if (os = "Windows") {
 				if (typeof this.Temps !== "undefined") {
 					// convert string to object
 					var core0TempCheck = JSON.parse(this.Temps);
@@ -114,8 +114,8 @@ Module.register("MMM-PC-Stats", {
 				}
 			} else {
 				// Check if core0 has temp sensor
-					var core0TempCheck = Sensors["acpitz-virtual-0"]["Virtual device"];
-					if (typeof core0TempCheck !== "undefined"){
+				var core0TempCheck = Sensors["acpitz-virtual-0"]["Virtual device"];
+				if (typeof core0TempCheck !== "undefined"){
 
 					// core0Temp
 					var core0Temp = document.createElement("span");
