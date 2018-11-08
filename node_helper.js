@@ -7,7 +7,7 @@
 const NodeHelper = require("node_helper");
 const request = require("pc-stats");
 var lmSensors = require("sensors.js");
-const [exec, spawn] = require("child_process");
+const {exec, spawn} = require("child_process");
 var executablePath = "D\:\\MagicMirror-tester\\modules\\MMM-PC-Stats\\ConsoleApp2.exe";
 
 module.exports = NodeHelper.create({
