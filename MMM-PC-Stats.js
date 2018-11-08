@@ -101,14 +101,15 @@ Module.register("MMM-PC-Stats", {
 			Element.innerHTML = Stats.cpu.threads[i].name + " &nbsp  @  &nbsp " + Number(Math.round(Stats.cpu.threads[i].usage+"e2")+"e-2") + "%" + "<br>";
 
 			// Check if cpu device has temp sensor
-		        if (os = "Windows") {
-				var core0TempCheck = this.Temps["CPU Core 1"];
-				if (typeof core0TempCheck !== "undefined") {
-
+		        if (os = "Windows") {				
+				if (typeof this.Temps !== "undefined") {
+					// convert string to object
+					var core0TempCheck = JSON.parse(this.Temps);
 					// Windows Core Temps
 					var core0Temp = document.createElement("span");
 					core0Temp.classList.add("large", "bright", "core0Temp");
-                    core0Temp.innerHTML = "Temp: " + " &nbsp " + Temps["CPU Core 1"].value + "°C" + "<br>";
+					// add temp for this (i) processor core from array
+                    			core0Temp.innerHTML = "Temp: " + " &nbsp " + core0TempCheck[i] + "°C" + "<br>";
 					Element.appendChild(core0Temp);
 				}
 			} else {
