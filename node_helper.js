@@ -60,7 +60,7 @@ module.exports = NodeHelper.create({
           var message = data.toString()
           // send it on to module
           this.sendSocketNotification("TEMPS_RESULT", message);
-          console.log("have temps info="+stdout); // for checking
+          console.log("have temps info="+message); // for checking
         })
 	    
         // if we receive a closed event from the keyword spotter
