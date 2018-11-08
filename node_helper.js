@@ -50,22 +50,22 @@ module.exports = NodeHelper.create({
         
         // Handle messages from process
         // if error
-        tempsProcess.stderr.on('data', function (data) {
+        tempsProcess.stderr.on("data", function (data) {
           var message = data.toString()
           console.error("ERROR", message.substring(4))
         })
         
         // if good data
-        tempsProcess.stdout.on('data', function (data) {
+        tempsProcess.stdout.on("data", function (data) {
           var message = data.toString()
           // send it on to module
           this.sendSocketNotification("TEMPS_RESULT", message);
-          console.log("have temps info="+message); // for checking
+          console.log("have temps info = " + message); // for checking
         })
 	    
         // if we receive a closed event from the keyword spotter
-        tempsProcess.on('close', function(data) {
-          console.log("temps process closed message="+data)
+        tempsProcess.on("close", function(data) {
+          console.log("temps process closed message = " + data)
         })
       /*exec(executablePath, (stdout, error)=>{
             if (error) {console.log("error="+error; throw error};
