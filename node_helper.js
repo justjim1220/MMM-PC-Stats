@@ -8,7 +8,8 @@ const NodeHelper = require("node_helper");
 const request = require("pc-stats");
 var lmSensors = require("sensors.js");
 const {exec, spawn} = require("child_process");
-var executablePath = "C:\\Users\\sam.sams\\MagicMirror\\modules\\MMM-PC-Stats\\ConsoleApp2.exe";
+const path = require('path');
+var executablePath = path.resolve(__dirname,"ConsoleApp2.exe");
 
 module.exports = NodeHelper.create({
 
