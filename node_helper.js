@@ -8,7 +8,7 @@ const NodeHelper = require("node_helper");
 const request = require("pc-stats");
 var lmSensors = require("sensors.js");
 const {exec, spawn} = require("child_process");
-var executablePath = "D\:\\MagicMirror-tester\\modules\\MMM-PC-Stats\\ConsoleApp2.exe";
+var executablePath = "C:\\Users\\sam.sams\\MagicMirror\\modules\\MMM-PC-Stats\\ConsoleApp2.exe";
 
 module.exports = NodeHelper.create({
 
@@ -43,6 +43,7 @@ module.exports = NodeHelper.create({
     },*/
 
 	getTemps: function() {
+    var self=this;
 		// spawn the temp access tool
 		// might want to start it with a parm of the number of seconds to sleep
 		// and let it run full time int he background vs start/stop
@@ -59,7 +60,7 @@ module.exports = NodeHelper.create({
 		tempsProcess.stdout.on("data", function (data) {
 			var message = data.toString()
 			// send it on to module
-			this.sendSocketNotification("TEMPS_RESULT", message);
+			self.sendSocketNotification("TEMPS_RESULT", message);
 			console.log("have temps info = " + message); // for checking
 		})
 
