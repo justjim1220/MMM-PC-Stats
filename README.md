@@ -14,6 +14,8 @@ Now it gets the temperature of each core of your processor
 
 * Annotated .css file included for coloring text and header.
 
+##  **  Windows PC version requires the terminal you use to run MM to be run as ADMIN  **
+
 ## Examples
 
 * One with color. One standard white.
