@@ -25,7 +25,8 @@ Now it gets the temperature of each core of your processor
 ![](images/3.png)
 
 * Windows PC version...
-![](images/4.png)
+
+![](images/WinPC.png)
 
 ## Installation
 
