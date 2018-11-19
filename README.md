@@ -24,9 +24,9 @@ Now it gets the temperature of each core of your processor
 
 ![](images/3.png)
 
-* Windows PC version...
+* Windows PC version... (AMD CPU's will only have 1 CPU Core temp)
 
-![](images/WinPC.png)
+![](images/WinPC.png) ![](images/AMD.png)
 
 ## Installation
 
@@ -38,17 +38,17 @@ Now it gets the temperature of each core of your processor
 ## Config.js entry and options
 
     {
-           disabled: false,
-           module: 'MMM-PC-Stats',
-           position: 'top_left',
-		   config: {
-		   videoCard: "NVIDIA GeForce GTX660", // name of your video card
-			useHeader: true,           // true if you want a header. 
-        	   	header: "MMM-PC-Stats",    // Any text you want. useHeader must be true
-        	   	maxWidth: "300px",
-        	   	animationSpeed: 0,         // 0 = no fade in and out. Only CPU load and Free RAM usage changes.
-			updateInterval: 15 * 1000, // How often the CPU and Free RAM is checked for load and usage.
-		}
+          disabled: false,
+          module: 'MMM-PC-Stats',
+          position: 'top_left',
+	  config: {
+	      GPU: "NVIDIA GeForce GTX660", // name of your video card
+	      useHeader: true,           // true if you want a header. 
+              header: "MMM-PC-Stats",    // Any text you want. useHeader must be true
+              maxWidth: "300px",
+              animationSpeed: 0,         // 0 = no fade in and out. Only CPU load and Free RAM usage changes.
+	      updateInterval: 15 * 1000, // How often the CPU and Free RAM is checked for load and usage.
+	  }
     },
 	
 ## SpaceCowboysDude gets props for his loop magic trick and his combining 2 npm packages in one return
