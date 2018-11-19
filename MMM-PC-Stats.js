@@ -7,10 +7,10 @@
 Module.register("MMM-PC-Stats", {
 
 	defaults: {
-		GPU: "NVIDIA GeForce GTX 960M", // name of your video card
+		GPU: "", // name of your video card
 		useHeader: false,
 		header: "",
-		maxWidth: "1200px",
+		maxWidth: "1000px",
 		animationSpeed: 0,
 		initialLoadDelay: 3250,
 		retryDelay: 2500,
@@ -100,24 +100,15 @@ Module.register("MMM-PC-Stats", {
 		yourCPU.innerHTML = Stats.cpu.name;
 		wrapper.appendChild(yourCPU);
 
-		// Your CPU usage
-		for (var i = 0, len = Stats.cpu.threads.length; i < len; i++) {
-			var Element = document.createElement("div");
-			Element.classList.add("medium", "bright", "usage");
-			Element.innerHTML = Stats.cpu.threads[i].name + " &nbsp  @  &nbsp " + Number(Math.round(Stats.cpu.threads[i].usage + "e2") + "e-2") + "% <br>";
-			wrapper.appendChild(Element);
-		}
 		// Check if cpu device has temp sensor
 		if (os = "Windows") {
 			for (var i = 0, len = Stats.cpu.threads.length/2; i < len; i++) {
-				if (typeof this.Temps !== "undefined") {
-					// convert string to object
+				if (typeof this.Temps != "undefined") {
+
 					var core0TempCheck = JSON.parse(this.Temps);
-					// Windows Core Temps
 					var core0Temp = document.createElement("div");
 					core0Temp.classList.add("medium", "bright", "core0Temp");
-					// add temp for this (i) processor core from array
-					core0Temp.innerHTML = "Core " + [i] + ": " + " &nbsp " + core0TempCheck[i] + "°C" + "<br>";
+					core0Temp.innerHTML = "CPU Core " + [i] + ": " + " &nbsp " + core0TempCheck[i] + "°C" + "<br>";
 					wrapper.appendChild(core0Temp);
 				}
 			}
@@ -211,6 +202,14 @@ Module.register("MMM-PC-Stats", {
 					+ Sensors["coretemp-isa-0000"]["ISA adapter"]["Core 7"].value + "&deg;C";
 				wrapper.appendChild(core7Temp);
 			}
+		}
+
+		// Your CPU usage
+		for (var i = 0, len = Stats.cpu.threads.length; i < len; i++) {
+			var Element = document.createElement("div");
+			Element.classList.add("medium", "bright", "usage");
+			Element.innerHTML = "CPU Thread " + [i] + " @ " + Number(Math.round(Stats.cpu.threads[i].usage + "e2") + "e-2") + "% <br>";
+			wrapper.appendChild(Element);
 		}
 
 		return wrapper;
