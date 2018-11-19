@@ -20,7 +20,7 @@ Now it gets the temperature of each core of your processor
 
 ![](images/2.PNG) ![](images/1.PNG)
 
-![](images/3.png) ![](images/new.png)
+![](images/3.png) ![](images/Screenshot (426).png)
 
 ## Installation
 
